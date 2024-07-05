@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script>
+    const ApiUrl = `${ location.protocol }//${ location.host }/api`
+    const BoxType = 9
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/cells.js"></script>
+  <script defer src="/js/box-info.js"></script>
+</head>
+
+<body>
+<div class="aix-grid-grand-content">
+
+  <div style="margin-top: 5px; margin-bottom: 5px; font-family: 'Titillium Web'; font-size: 12px">
+    Back to <a href="/">Home</a>
+  </div>
+
+  <!-- Start: box_info, managed by box-info.js -->
+  <div id="box_info"></div>
+  <!-- End: box_info, managed by box-info.js -->
+
+  <div class="aix-grid-box-container-9-9">
+
+    <!-- Start: 9x9 box grid-->
+    <div id="aix-grid-box-9-9">
+
+      <div class="aix-grid-box-child" id="cell_A1"></div>
+      <div class="aix-grid-box-child" id="cell_A2"></div>
+      <div class="aix-grid-box-child" id="cell_A3"></div>
+      <div class="aix-grid-box-child" id="cell_A4"></div>
+      <div class="aix-grid-box-child" id="cell_A5"></div>
+      <div class="aix-grid-box-child" id="cell_A6"></div>
+      <div class="aix-grid-box-child" id="cell_A7"></div>
+      <div class="aix-grid-box-child" id="cell_A8"></div>
+      <div class="aix-grid-box-child" id="cell_A9"></div>
+
+      <div class="aix-grid-box-child" id="cell_B1"></div>
+      <div class="aix-grid-box-child" id="cell_B2"></div>
+      <div class="aix-grid-box-child" id="cell_B3"></div>
+      <div class="aix-grid-box-child" id="cell_B4"></div>
+      <div class="aix-grid-box-child" id="cell_B5"></div>
+      <div class="aix-grid-box-child" id="cell_B6"></div>
+      <div class="aix-grid-box-child" id="cell_B7"></div>
+      <div class="aix-grid-box-child" id="cell_B8"></div>
+      <div class="aix-grid-box-child" id="cell_B9"></div>
+
+      <div class="aix-grid-box-child" id="cell_C1"></div>
+      <div class="aix-grid-box-child" id="cell_C2"></div>
+      <div class="aix-grid-box-child" id="cell_C3"></div>
+      <div class="aix-grid-box-child" id="cell_C4"></div>
+      <div class="aix-grid-box-child" id="cell_C5"></div>
+      <div class="aix-grid-box-child" id="cell_C6"></div>
+      <div class="aix-grid-box-child" id="cell_C7"></div>
+      <div class="aix-grid-box-child" id="cell_C8"></div>
+      <div class="aix-grid-box-child" id="cell_C9"></div>
+
+      <div class="aix-grid-box-child" id="cell_D1"></div>
+      <div class="aix-grid-box-child" id="cell_D2"></div>
+      <div class="aix-grid-box-child" id="cell_D3"></div>
+      <div class="aix-grid-box-child" id="cell_D4"></div>
+      <div class="aix-grid-box-child" id="cell_D5"></div>
+      <div class="aix-grid-box-child" id="cell_D6"></div>
+      <div class="aix-grid-box-child" id="cell_D7"></div>
+      <div class="aix-grid-box-child" id="cell_D8"></div>
+      <div class="aix-grid-box-child" id="cell_D9"></div>
+
+      <div class="aix-grid-box-child" id="cell_E1"></div>
+      <div class="aix-grid-box-child" id="cell_E2"></div>
+      <div class="aix-grid-box-child" id="cell_E3"></div>
+      <div class="aix-grid-box-child" id="cell_E4"></div>
+      <div class="aix-grid-box-child" id="cell_E5"></div>
+      <div class="aix-grid-box-child" id="cell_E6"></div>
+      <div class="aix-grid-box-child" id="cell_E7"></div>
+      <div class="aix-grid-box-child" id="cell_E8"></div>
+      <div class="aix-grid-box-child" id="cell_E9"></div>
+
+      <div class="aix-grid-box-child" id="cell_F1"></div>
+      <div class="aix-grid-box-child" id="cell_F2"></div>
+      <div class="aix-grid-box-child" id="cell_F3"></div>
+      <div class="aix-grid-box-child" id="cell_F4"></div>
+      <div class="aix-grid-box-child" id="cell_F5"></div>
+      <div class="aix-grid-box-child" id="cell_F6"></div>
+      <div class="aix-grid-box-child" id="cell_F7"></div>
+      <div class="aix-grid-box-child" id="cell_F8"></div>
+      <div class="aix-grid-box-child" id="cell_F9"></div>
+
+      <div class="aix-grid-box-child" id="cell_G1"></div>
+      <div class="aix-grid-box-child" id="cell_G2"></div>
+      <div class="aix-grid-box-child" id="cell_G3"></div>
+      <div class="aix-grid-box-child" id="cell_G4"></div>
+      <div class="aix-grid-box-child" id="cell_G5"></div>
+      <div class="aix-grid-box-child" id="cell_G6"></div>
+      <div class="aix-grid-box-child" id="cell_G7"></div>
+      <div class="aix-grid-box-child" id="cell_G8"></div>
+      <div class="aix-grid-box-child" id="cell_G9"></div>
+
+      <div class="aix-grid-box-child" id="cell_H1"></div>
+      <div class="aix-grid-box-child" id="cell_H2"></div>
+      <div class="aix-grid-box-child" id="cell_H3"></div>
+      <div class="aix-grid-box-child" id="cell_H4"></div>
+      <div class="aix-grid-box-child" id="cell_H5"></div>
+      <div class="aix-grid-box-child" id="cell_H6"></div>
+      <div class="aix-grid-box-child" id="cell_H7"></div>
+      <div class="aix-grid-box-child" id="cell_H8"></div>
+      <div class="aix-grid-box-child" id="cell_H9"></div>
+
+      <div class="aix-grid-box-child" id="cell_I1"></div>
+      <div class="aix-grid-box-child" id="cell_I2"></div>
+      <div class="aix-grid-box-child" id="cell_I3"></div>
+      <div class="aix-grid-box-child" id="cell_I4"></div>
+      <div class="aix-grid-box-child" id="cell_I5"></div>
+      <div class="aix-grid-box-child" id="cell_I6"></div>
+      <div class="aix-grid-box-child" id="cell_I7"></div>
+      <div class="aix-grid-box-child" id="cell_I8"></div>
+      <div class="aix-grid-box-child" id="cell_I9"></div>
+
+    </div>
+    <!-- End: 9x9 box grid -->
+
+    <!-- Start: Hover info box -->
+    <div class="vialHoverInfo">
+      <div id="aix-content-listing-cell"></div>
+    </div>
+    <!-- End: Hover info box -->
+
+</div>
+</body>
+</html>

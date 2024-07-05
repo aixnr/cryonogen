@@ -1,0 +1,247 @@
+// -----------------------------------------------------------------------------
+// For debugging
+// * { border: 1px dotted red; }
+
+// -----------------------------------------------------------------------------
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Titillium+Web:wght@300&display=swap');
+
+// -----------------------------------------------------------------------------
+// Global styling for /boxes/n-n.html
+.aix-grid-grand-content {
+  width: 1400px;
+  margin: 20px 20px 20px 40px;
+}
+
+.vialHoverInfo {
+  margin-top: 2px; margin-left: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+
+  #aix-content-listing-cell {
+    // Sticky CSS for making it scroll-friendly
+    position: sticky; top: 20px;
+    margin-top: 0px;
+    color: MidnightBlue;
+
+    .info-field-title {
+      color: Azure; background-color: MidnightBlue;
+      padding: 2px 4px 2px 4px;
+      border-radius: 4px;
+    }
+  }
+}
+
+#box_info {
+  margin-top: 7px;
+  display: flex; direction: row; gap: 22px; align-items: baseline;
+  h2 { font-family: 'Titillium Web', sans-serif; }
+  p { font-family: 'Titillium Web', sans-serif; }
+}
+
+// -----------------------------------------------------------------------------
+// Box-specific styling, 5x5
+.aix-grid-box-5-5 {
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 6px; grid-row-gap: 12px; 
+}
+
+
+// -----------------------------------------------------------------------------
+// Box-specific styling, 9x9
+.aix-grid-box-container-9-9 {
+  display: flex; flex-direction: row;
+  
+  #aix-grid-box-9-9 {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-column-gap: 4px; grid-row-gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Box-specific styling, 8x8
+.aix-grid-box-container-8-8 {
+  display: flex; flex-direction: row;
+  
+  #aix-grid-box-8-8 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 4px; grid-row-gap: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Styling for individual cells
+.aix-grid-box-child {
+  border: 1px solid DarkSlateGray; border-radius: 4px;
+  width: 96px; height: 96px;
+  position: relative;
+  
+  /* Cid Kagenou shadow-sama */
+  transition: box-shadow .2s;
+  &:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .25);
+  }
+
+  .aix-grid-cell-pos {
+    top: 2px; right: 2px; position: absolute;
+    color: RoyalBlue;
+    text-align: center; vertical-align: middle; font-size: 9px;
+  }
+
+  .aix-grid-cell-label {
+    font-size: 14px; text-align: center;
+    color: DarkSlateGray;
+    margin-top: 18px;
+    display: block;
+    padding: 3px;
+  }
+
+  .aix-grid-cell-label-date {
+    font-size: 11px;
+    color: DeepSkyBlue;
+    display: block; position: absolute; bottom: 2px; left: 2px;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Index box list styling
+.index_header {
+  margin: 12px;
+  font-family: 'Titillium Web', sans-serif;
+
+  .index_nav_list {
+    display: flex; flex-direction: row; gap: 4px;
+  }
+
+  .index_nav_list a {
+    font-size: 12px;
+    color: Azure;
+    background-color: DodgerBlue;
+    padding: 2px 10px 2px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+}
+
+#index_box_info {
+  margin-top: 40px; margin-left: 12px; margin-bottom: 60px;
+  display: flex; flex-direction: row; gap: 8px; flex-wrap: wrap;
+  font-family: 'Titillium Web', sans-serif;
+  
+  .box_list_start {
+    border: 1px solid gray; border-radius: 10px; padding: 12px; width: 480px;
+    display: flex; flex-direction: column; gap: 6px;
+    
+  }
+
+  .box_label_title a {
+    text-decoration: none;
+    padding: 2px 10px 2px 10px;
+    border-radius: 4px;
+    color: Azure; background-color: MidnightBlue;
+
+    transition: box-shadow .2s;
+    &:hover {
+      box-shadow: 0 0 11px rgba(33, 33, 33, .25);
+    }
+  }
+
+  .box_label_subtitle {
+      margin-left: 4px;
+      color: MidnightBlue;
+  }
+
+  .box_label_lastItem {
+    color: SlateGray;
+    font-size: 12px;
+  }
+
+  .box_label_location {
+    color: DarkSlateGray;
+  }
+
+  .box_label_capacity {
+    color: DarkSlateGray;
+    margin-left: 12px;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// For vials.html
+#vial_search {
+  margin-top: 42px; margin-left: 12px;
+
+  input {
+    width: 240px;
+    padding: 6px 3px 6px 3px;
+  }
+}
+
+#vial_list {
+  margin-top: 20px; margin-left: 12px;
+  display: flex; flex-direction: column; gap: 10px;
+
+  .searchListIndividual {
+    font-family: 'Titillium Web', sans-serif; font-size: 14px;
+    display: flex; flex-direction: column; gap: 8px; width: 640px;
+    border: 1px solid MidnightBlue; border-radius: 6px;
+    padding: 4px;
+
+    .result_field_title {
+      color: Azure; background-color: MidnightBlue; border-radius: 3px; padding: 1px 3px;
+    }
+
+    .result_vial_name {
+      color: MidnightBlue; font-weight: 600;
+    }
+
+    .result_meta_extra {
+      color: SlateBlue
+    }
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// openVialDetail
+#vial-dialog {
+  font-family: 'Titillium Web';
+  position: fixed; inset: 0px; margin: auto;
+  max-width: 720px; max-height: 420px;
+  border: 2px solid DodgerBlue; border-radius: 6px;
+  background-color: White;
+
+  #vial-dialog-topBar {
+    background-color: Navy; color: White; font-weight: bold;
+    padding-block: 6px; padding-left: 3px;
+
+    #vial-dialog-closeButton {
+      float: right; position: relative; top: -6px;
+      padding-inline: 9px; padding-block: 6px;
+      border-radius: 2px solid OrangeRed; border-radius: 0px 4px 0px 0px;
+      color: White; background-color: OrangeRed;
+      cursor: pointer;
+    }
+  }
+
+  #vial-dialog-content {
+    margin-top: 12px; padding-left: 3px;
+
+    .info-field-title {
+      color: Azure; background-color: Navy; font-weight: bold;
+      padding: 2px 4px 2px 4px;
+      border-radius: 4px;
+    }
+  }
+}

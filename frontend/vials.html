@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script>
+    const ApiUrl = `${ location.protocol }//${ location.host }/api`
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/vials-search.js" type="module"></script>
+
+  <title>Vials | Cryonogen Repository</title>
+</head>
+
+<body>
+<div class="index_main">
+
+  <div class="index_header">
+    <h2>Vial Search</h2>
+    <div class="index_nav_list">
+      <div><a href="/">Home</a></div>
+      <div><a href="/about.html">About</a></div>
+    </div>
+  </div>
+
+  <!-- Start: Search box -->
+  <div id="vial_search">
+    <input type="text" id="vialSearchInput" placeholder="Search here...">
+   <!--
+    // Reactively display search term for debugging
+    <p id="vialSearchResult"></p>
+   -->
+    <script>
+      // When <Enter> is pressed (keyCode == 13), dispatch the search input text
+      vialSearchInput.onkeyup = (key) => {
+        if (key.keyCode == 13) {
+          let catchSearch = new CustomEvent('catch-search', {detail: vialSearchInput.value})
+          document.dispatchEvent(catchSearch)
+
+          // Check https://www.toptal.com/developers/keycode for keyCode to use.
+          // keyCode 13 == 'Enter'
+
+          // Reactively display search term for debugging
+          // vialSearchResult.innerHTML = vialSearchInput.value
+        }
+      }
+
+      // When the text search input is cleared, clear the result
+      vialSearchInput.oninput = () => {
+        if (vialSearchInput.value.length === 0) {
+          let emptySearch = new CustomEvent('empty-search')
+          document.dispatchEvent(emptySearch)
+        }
+      }
+    </script>
+  </div>
+  <!-- End: Search box -->
+
+  <!-- Start: search result, managed by ./frontend/js/vials-search.js  -->
+  <div id="vial_list"></div>
+  <!-- End: search result -->
+
+</div>
+</body>
+</html>

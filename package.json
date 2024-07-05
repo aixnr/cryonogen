@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "archive": "bash backup.sh",
+    "sass": "sass frontend/css/source.scss frontend/css/style.css --watch"
+  }
+}
