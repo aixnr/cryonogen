@@ -21,17 +21,11 @@ const displayBoxInfo = async () => {
               <a href="/boxes/${ box.boxType }.html?box_id=${ box.BoxID }">${ box.BoxID }</a>
             </span>
             <span class="box_label_subtitle">${ box.boxDescription }</span>
+            <span class="box_label_capacity">📦 ${ box.currentCapacity } </span>
           </div>
           <div>
           <span class="box_label_location">🧭 ${ box.storageLocation }</span>
-          <span class="box_label_capacity">📦 ${ box.boxStatus } </span>
           </div>
-          <div>
-            <span class="box_label_lastItem">
-              📥 Last item added: ${ box.recentlyAdded[0] } on ${ box.recentlyAdded[1] }
-            </span>
-          </div>
-
         </div>
       `
     }
@@ -40,7 +34,6 @@ const displayBoxInfo = async () => {
   let allBoxData = fetchBoxData()
   allBoxData.then(boxData => insertBoxData(boxData))
 }
-
 
 
 // Execution layer!

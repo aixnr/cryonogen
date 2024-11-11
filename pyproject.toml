@@ -10,12 +10,11 @@ requires-python = ">=3.9"
 dependencies = [
     "Flask==3.0.0",
     "Flask-Cors==4.0.0",
-    "pandas==2.1.4",
-    "openpyxl==3.1.2"
+    "pandas==2.1.4"
 ]
 
 [tool.setuptools]
-packages = ["cryo"]
+packages = ["cryosrc"]
 
 [project.scripts]
-cryo = "cryo.main:cli"
+cryo = "cryosrc.main:cli"

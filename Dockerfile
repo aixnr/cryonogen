@@ -1,29 +1,3 @@
-# ------------------------------------------------------------------------------
-# Builder
-FROM debian:12 AS build_python
-
-RUN apt-get update \
-  && apt-get install --assume-yes --quiet --no-install-recommends \
-  python3-minimal python3-venv python3-distutils \
-  apt-transport-https ca-certificates \
-  && update-ca-certificates
-
-COPY ./cryo /src/cryo/
-COPY Pipfile pyproject.toml src/
-RUN echo "Zipping cryo with shiv" && cd /src \
-  && python3 -m venv venv && . ./venv/bin/activate \
-  && pip install pipenv && pipenv install \
-  && shiv -c cryo -o /usr/local/bin/cryo --compressed .
-
-FROM golang:1.21.5-bookworm AS build_go
-COPY ./frontend /src/frontend/
-COPY ./cryoserve.go /src/cryoserve.go
-RUN echo "Compiling the frontend static assets" && cd /src \
-  && go build -ldflags '-s -w' -o /usr/local/bin/cryoserve cryoserve.go
-
-
-# ------------------------------------------------------------------------------
-# Final
 FROM python:3.11-slim-bookworm
 ARG S6_OVERLAY_VERSION=3.2.0.0
 
@@ -34,13 +8,25 @@ RUN apt-get update && apt-get --assume-yes --no-install-recommends install curl 
     && tar -C / -Jxpf s6-overlay-x86_64.tar.xz \
     && rm -rf s6-overlay-noarch.tar.xz s6-overlay-x86_64.tar.xz \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -SLO "https://github.com/astral-sh/uv/releases/download/0.5.1/uv-x86_64-unknown-linux-gnu.tar.gz" \
+    && tar axf uv-x86_64-unknown-linux-gnu.tar.gz \
+    && mv uv-x86_64-unknown-linux-gnu/uv /usr/local/bin/uv \
+    && rm -rf uv-x86_64-unknown-linux-gnu uv-x86_64-unknown-linux-gnu.tar.gz \
+    && uv python install 3.11 \
+    && uv venv shard && . /shard/bin/activate \
+    && uv pip install pandas Flask Flask-Cors
 
-COPY --from=build_python /usr/local/bin/cryo /usr/local/bin/cryo
-COPY --from=build_go /usr/local/bin/cryoserve /usr/local/bin/cryoserve
+COPY ./cryosrc /cryosrc
+COPY pyproject.toml /pyproject.toml
 
-RUN echo "#!/bin/bash\ncd / && cryo web --port 5000 --host 0.0.0.0" >> cryo.sh \
+RUN . /shard/bin/activate \
+    && cd / && uv pip install . \
+    && ln -s /shard/bin/cryo /usr/local/bin/cryo \
+    && echo "#!/bin/bash\ncd / && cryo web --port 5000 --host 0.0.0.0 --db /datasheet/cryonogen.db" >> cryo.sh \
     && chmod +x cryo.sh
+
+COPY ./bin/cryoserve /usr/local/bin/cryoserve
 
 RUN mkdir -p /etc/services.d/cryo_be \
     && mkdir -p /etc/services.d/cryo_fe \

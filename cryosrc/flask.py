@@ -1,43 +1,46 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+import sqlite3
 
-from .vial_manifest import Vial
-from .box_manifest import Box
+from .manifest import Manifest
 
 
-def create_app() -> Flask:
+def create_app(db: str) -> Flask:
     # Initialize the app
     app = Flask(__name__)
     app.debug = False
     CORS(app)
 
-    # The route for all boxes (listing)
+    with sqlite3.connect(db) as conn:
+        manifest = Manifest(conn=conn)
+
+    conn.close()
+
     @app.route("/boxes")
     def return_all_boxes():
-        payload = Box().return_box_index()
+        payload = manifest.return_box_index()
         return jsonify(payload)
 
-    # The route for specific box
     @app.route("/box/<box_id>")
     def return_box(box_id: str):
-        payload = Box().return_box(box_id)
+        payload = manifest.return_box(box_id)
         return jsonify(payload)
 
     # The route for all vials
     @app.route("/vials")
     def return_all_vials():
-        payload = Vial().return_all_vials()
+        payload = manifest.return_all_vials()
         return jsonify(payload)
 
     # The route for vials of a specific box
     @app.route("/vials/<box_id>")
     def return_vials_box(box_id: str):
-        payload = Vial().return_vials_box(box_id)
+        payload = manifest.return_vials_box(box_id)
         return jsonify(payload)
 
     return app
 
 
-def web(host="127.0.0.1", port=5000) -> None:
-    app = create_app()
+def web(db: str, host="127.0.0.1", port=5000) -> None:
+    app = create_app(db=db)
     app.run(host, port)

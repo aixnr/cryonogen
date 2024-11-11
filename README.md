@@ -5,27 +5,18 @@ This project drew inspiration from Aranel Fyre, which is a re-build of Aranel SD
 
 ```bash
 # Setting up the environment
-python -m venv venv
+# The first venv is uv's subcommand
+# The second venv is the directory
+uv venv venv
 source ./venv/bin/activate
-pip install pipenv
-
-# Installing dependencies
-pipenv install \
-  Flask==3.0.0 \
-  Flask-Cors==4.0.0 \
-  pandas==2.1.4 \
-  openpyxl==3.1.2 \
-  shiv==1.0.4
+uv pip install -r pyproject.toml
 ```
 
 Since `cryo` is a python package (see `pyproject.toml`), it can be installed into the current python environment as an editable installation:
 
 ```bash
 # To install in editable mode
-pip install --editable .
-
-# To compile with shiv
-shiv -c cryo -o cryo.pyz --compressed .
+uv pip install --editable .
 
 # To build the Docker container
 docker build --tag cryonogen:latest .
@@ -40,4 +31,13 @@ docker run --name cryonogen --detach \
   -v $PWD/datasheet:/datasheet \
   -p 9091:9091 \
   cryonogen:latest
+```
+
+To prepare the `cryonogen.db` database file:
+
+```bash
+# outputs cryonogen.db in $PWD
+python to-sqlite.py process \
+  --box datasheet/BoxManifest.xlsx \
+  --vial datasheet/VialManifest.xlsx
 ```

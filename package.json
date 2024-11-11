@@ -1,6 +1,11 @@
 {
   "scripts": {
     "archive": "bash backup.sh",
-    "sass": "sass frontend/css/source.scss frontend/css/style.css --watch"
+    "sass": "sass frontend/css/source.scss frontend/css/style.css --watch",
+    "go:build": "go build -ldflags '-s -w' -o ./bin/cryoserve cryoserve.go",
+    "py:env": "uv venv venv",
+    "py:deps": "uv pip install -r pyproject.toml",
+    "install:cryo": "uv pip install --editable .",
+    "docker:build": "docker build -t cryonogen:latest ."
   }
 }
